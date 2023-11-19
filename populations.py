@@ -3,7 +3,9 @@ import pandas as pd
 "data_2006_2010"
 a = pd.read_csv("/workspaces/opioid-2023-ss1486-us26-avb26-dj216/data_pop/Population_2006_2010.csv", encoding = 'latin-1')
 "data_2010_2015"
+a = a[['STNAME', 'CTYNAME', 'POPESTIMATE2006', 'POPESTIMATE2007', 'POPESTIMATE2008', 'POPESTIMATE2009']]
 b = pd.read_csv("/workspaces/opioid-2023-ss1486-us26-avb26-dj216/data_pop/Population_2010_2015.csv", encoding = 'latin-1')
+b = b[['STNAME', 'CTYNAME', "POPESTIMATE2010",'POPESTIMATE2011', 'POPESTIMATE2012', 'POPESTIMATE2013', 'POPESTIMATE2014', 'POPESTIMATE2015']]
 
 "Below is trying to find if these datasets differ in statename"
 # print (a[~a['STNAME'].isin(b['STNAME'])])
@@ -39,7 +41,7 @@ print(b.loc[[83,89,1161,2454]])
 x = pd.merge(a, b, on=['STNAME', 'CTYNAME'])
 x.to_csv("/workspaces/opioid-2023-ss1486-us26-avb26-dj216/data_pop/pop_merge.csv", index=False)
 # print(x.head())
-# print(x.shape)
+print(x.shape)
 
 
 
