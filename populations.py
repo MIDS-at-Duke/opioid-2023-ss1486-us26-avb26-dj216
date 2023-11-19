@@ -37,6 +37,7 @@ print(b.loc[[83,89,1161,2454]])
 # print(a.shape)
 # print(b.shape)
 x = pd.merge(a, b, on=['STNAME', 'CTYNAME'])
+x.to_csv("/workspaces/opioid-2023-ss1486-us26-avb26-dj216/data_pop/pop_merge.csv", index=False)
 # print(x.head())
 # print(x.shape)
 
