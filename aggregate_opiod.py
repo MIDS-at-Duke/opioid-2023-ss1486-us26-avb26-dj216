@@ -43,4 +43,6 @@ g_states = (
 
 
 # safe to parquet
-g_states.to_parquet("county_mme.parquet")
+# g_states.to_parquet("county_mme.parquet")
+
+""" remember to do this locally"""
