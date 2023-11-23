@@ -148,7 +148,7 @@ print("Common counties:", common_counties)
 # Print the uncommon counties
 # print("Uncommon counties:", uncommon_counties)
 
-
+#### FINDING COUNTS FOR EACH, COUNTY, FOR EACH YEAR FOR BOTH DATASETS
 # For df:
 df_count_per_state_year = (
     df.groupby(["BUYER_STATE", "YEAR", "BUYER_COUNTY"]).size().reset_index(name="COUNT")
@@ -164,3 +164,20 @@ bethel_counts_df2 = (
     df2[df2["CTYNAME"] == "BETHEL"].groupby("CTYNAME").size().reset_index(name="COUNT")
 )
 print(bethel_counts_df2)
+
+
+##### Looking at ALEUTIANS EAST in the df dataset
+# Replace 'BUYER_COUNTY' with the actual column name for county in your DataFrame
+
+county_df = df[df["BUYER_COUNTY"] == "ALEUTIANS EAST"]
+
+# Display the filtered DataFrame
+print(county_df)
+
+
+# Testing for ALEUTIANS EAST in df for all years. It seems to only exist for 2006 and 2007
+# Check unique years for the county "ALEUTIANS EAST" in df1
+unique_years = df[df["BUYER_COUNTY"] == "ALEUTIANS EAST"]["YEAR"].unique()
+
+# Display the unique years
+print(unique_years)
