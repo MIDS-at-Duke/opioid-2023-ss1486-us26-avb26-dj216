@@ -147,3 +147,20 @@ print("Common counties:", common_counties)
 
 # Print the uncommon counties
 # print("Uncommon counties:", uncommon_counties)
+
+
+# For df:
+df_count_per_state_year = (
+    df.groupby(["BUYER_STATE", "YEAR", "BUYER_COUNTY"]).size().reset_index(name="COUNT")
+)
+print(df_count_per_state_year)
+
+# df2
+df2_count_per_state_year = (
+    df2.groupby(["State_Initials", "Year", "CTYNAME"]).size().reset_index(name="COUNT")
+)
+print(df2_count_per_state_year)
+bethel_counts_df2 = (
+    df2[df2["CTYNAME"] == "BETHEL"].groupby("CTYNAME").size().reset_index(name="COUNT")
+)
+print(bethel_counts_df2)
