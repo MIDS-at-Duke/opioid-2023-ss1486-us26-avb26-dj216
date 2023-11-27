@@ -129,7 +129,6 @@ deaths = pd.read_csv('Data_Mortality_Rate/US_Vital_Stats_Deaths.csv')
 deaths[['CTYNAME','STNAME']] = deaths['County'].str.split(',', n=1, expand=True)
 deaths['STNAME'] = deaths['STNAME'].str.strip()
 
- [markdown]
 # ### Finding rows with missing values
 
 
@@ -138,7 +137,6 @@ missing_data = deaths.loc[deaths['Deaths'] == 'Missing']
 
 missing_data[['County','Year']].drop_duplicates()
 
- [markdown]
 # ##### Dropping Alaska  and Virginia
 
 
@@ -148,7 +146,6 @@ deaths = deaths.loc[deaths['STNAME'] != 'VA']
 
 deaths['Drug/Alcohol Induced Cause'].value_counts()
 
- [markdown]
 # #### Subset for only drug related deaths
 
 
@@ -160,7 +157,6 @@ deaths_subset['Drug/Alcohol Induced Cause'].value_counts()
 
 deaths_subset = deaths_subset[['STNAME','CTYNAME','Year','Drug/Alcohol Induced Cause','Deaths']]
 
- [markdown]
 # #### groupby to add deaths for different categories 
 
 
@@ -177,7 +173,6 @@ deaths_subset = deaths_subset[['STNAME','CTYNAME','Year','Deaths_Total']].drop_d
 deaths_subset['Year'] = deaths_subset['Year'].astype('int')
 
 
- [markdown]
 # #### Impute missing values
 
 
@@ -203,7 +198,6 @@ unique_combinations['Year'] = [[y for y in range(int(x[:4]), int(x[-4:]) + 1)]
 
 unique_combinations = unique_combinations.explode('Year').reset_index(drop=True)
 
- [markdown]
 # #### merge unique_combinations with deaths subset 
 
 
@@ -215,7 +209,6 @@ data_no_missing = pd.merge(unique_combinations, deaths_subset, on=['STNAME', 'CT
 
 data_no_missing = data_no_missing.fillna(5)
 
- [markdown]
 # ### merge with population dataset 
 
 
