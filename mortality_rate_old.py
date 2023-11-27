@@ -129,27 +129,22 @@ deaths = pd.read_csv('Data_Mortality_Rate/US_Vital_Stats_Deaths.csv')
 deaths[['CTYNAME','STNAME']] = deaths['County'].str.split(',', n=1, expand=True)
 deaths['STNAME'] = deaths['STNAME'].str.strip()
 
- [markdown]
-# ### Finding rows with missing values
+# ## Deleting Rows with missing data
 
+deaths = deaths[deaths.Deaths != 'Missing']
+pop_data = pop_data[pop_data.Population != 'Missing']
 
-missing_data = deaths.loc[deaths['Deaths'] == 'Missing']
+len(pop_data.drop_duplicates(['CTYNAME','STNAME']).index)
 
+len(deaths.drop_duplicates(['CTYNAME','STNAME']).index)
 
-missing_data[['County','Year']].drop_duplicates()
+pop_data['Yearly July 1st Estimates'].unique()
 
- [markdown]
-# ##### Dropping Alaska  and Virginia
+deaths['Year'].unique()
 
-
-deaths = deaths.loc[deaths['STNAME'] != 'AK']
-deaths = deaths.loc[deaths['STNAME'] != 'VA']
-
+deaths.columns
 
 deaths['Drug/Alcohol Induced Cause'].value_counts()
-
- [markdown]
-# #### Subset for only drug related deaths
 
 
 deaths_subset = (deaths.loc[deaths['Drug/Alcohol Induced Cause'].isin(['Drug poisonings (overdose) Unintentional (X40-X44)','Drug poisonings (overdose) Suicide (X60-X64)'
@@ -157,95 +152,28 @@ deaths_subset = (deaths.loc[deaths['Drug/Alcohol Induced Cause'].isin(['Drug poi
 
 deaths_subset['Drug/Alcohol Induced Cause'].value_counts()
 
-
-deaths_subset = deaths_subset[['STNAME','CTYNAME','Year','Drug/Alcohol Induced Cause','Deaths']]
-
- [markdown]
-# #### groupby to add deaths for different categories 
-
-
-deaths_subset['Deaths'] = deaths_subset['Deaths'].astype(float).astype(int)
-
-
-deaths_subset['Deaths_Total'] = deaths_subset.groupby(['STNAME', 'CTYNAME','Year'])['Deaths'].transform(sum)
-
-
-deaths_subset = deaths_subset[['STNAME','CTYNAME','Year','Deaths_Total']].drop_duplicates()
-
-
-
-deaths_subset['Year'] = deaths_subset['Year'].astype('int')
-
-
- [markdown]
-# #### Impute missing values
-
-
-deaths_subset.columns
-
-
-deaths_subset = deaths_subset.sort_values(by=['STNAME', 'CTYNAME', 'Year'],ascending=True)
-
-
-
-# Get unique combinations of State and CTYNAME
-unique_combinations = deaths_subset[['STNAME', 'CTYNAME']].drop_duplicates()
-
-# Convert unique combinations to a list
-combinations_list = unique_combinations.values.tolist()
-
-
-unique_combinations['Year'] = '2003-2015'
-
-
-unique_combinations['Year'] = [[y for y in range(int(x[:4]), int(x[-4:]) + 1)] 
-                        for x in unique_combinations['Year']]
-
-unique_combinations = unique_combinations.explode('Year').reset_index(drop=True)
-
- [markdown]
-# #### merge unique_combinations with deaths subset 
-
-
-deaths_subset.columns
-
-
-data_no_missing = pd.merge(unique_combinations, deaths_subset, on=['STNAME', 'CTYNAME', 'Year'] , how=  'left')
-
-
-data_no_missing = data_no_missing.fillna(5)
-
- [markdown]
-# ### merge with population dataset 
-
+len(deaths_subset.drop_duplicates(['CTYNAME','STNAME']).index)
 
 stats_abb = pd.read_csv('Data_Mortality_Rate/states_abb.csv')
 
 stats_abb = stats_abb.rename(columns={'Abbreviation': 'STNAME'})
 
-
-merge_data = pd.merge(data_no_missing,stats_abb,how='left',on='STNAME')
-
+merge_data = pd.merge(deaths_subset,stats_abb,how='left',on='STNAME')
 
 pop_data = pop_data.rename(columns={'Yearly July 1st Estimates': 'Year'})
 
-
 final_merge = pd.merge(merge_data,pop_data,how='inner',on=['State','CTYNAME','Year'])
 
-
-final_merge = pd.merge(merge_data,pop_data,how='inner',on=['State','CTYNAME','Year'])
-
-
-final_merge['Deaths_Total'] = final_merge['Deaths_Total'].astype(float).astype(int)
+final_merge['Deaths'] = final_merge['Deaths'].astype(float).astype(int)
 
 final_merge['Population'] = final_merge['Population'].astype(float).astype(int)
 
-final_merge['Mortality_Rate'] = final_merge['Deaths_Total'] / final_merge['Population']
+final_merge.dtypes
 
+final_merge['Mortality_Rate'] = final_merge['Deaths'] / final_merge['Population']
 
-final_merge = final_merge[['State','CTYNAME','Year','Deaths_Total','Population','Mortality_Rate']]
+final_merge.columns
 
+final_merge = final_merge[['State','CTYNAME','Year','Drug/Alcohol Induced Cause','Deaths','Population','Mortality_Rate']]
 
 final_merge.to_csv('Mortality_Rate_Data.csv')
-
-
