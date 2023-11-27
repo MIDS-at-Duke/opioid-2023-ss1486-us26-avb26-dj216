@@ -146,7 +146,7 @@ deaths = deaths.loc[deaths['STNAME'] != 'VA']
 
 deaths['Drug/Alcohol Induced Cause'].value_counts()
 
-# #### Subset for only drug related deaths
+##### Subset for only drug related deaths
 
 
 deaths_subset = (deaths.loc[deaths['Drug/Alcohol Induced Cause'].isin(['Drug poisonings (overdose) Unintentional (X40-X44)','Drug poisonings (overdose) Suicide (X60-X64)'
@@ -157,8 +157,7 @@ deaths_subset['Drug/Alcohol Induced Cause'].value_counts()
 
 deaths_subset = deaths_subset[['STNAME','CTYNAME','Year','Drug/Alcohol Induced Cause','Deaths']]
 
-# #### groupby to add deaths for different categories 
-
+##### groupby to add deaths for different categories 
 
 deaths_subset['Deaths'] = deaths_subset['Deaths'].astype(float).astype(int)
 
