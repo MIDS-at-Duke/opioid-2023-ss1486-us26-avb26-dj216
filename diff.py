@@ -71,11 +71,11 @@ sns.lmplot(
 )
 plt.axvline(x=2010, color="r", linestyle="--")
 plt.title(
-    "Florida vs Control States Difference-in-Differences Analysis for Opiods per Capita(MME(mg)/Capita)(person))"
+    "Florida vs Control States Difference-in-Differences Analysis for Opioids per Capita(MME(mg)/Capita)(person))"
 )
 plt.xlabel("YEAR")
 plt.legend(loc="lower center", bbox_to_anchor=(0.5, -0.25), ncol=2)
-plt.ylabel("Opiods per Capita(MME/Capita")
+plt.ylabel("Opioids per Capita(MME/Capita")
 plt.figtext(
     1.02,
     0.5,
@@ -149,11 +149,11 @@ sns.lmplot(
 )
 plt.axvline(x=2012, color="r", linestyle="--")
 plt.title(
-    "Washington vs Control States Difference-in-Differences Analysis for Opiods per Capita(MME(mg)/Capita)(person))"
+    "Washington vs Control States Difference-in-Differences Analysis for Opioids per Capita(MME(mg)/Capita)(person))"
 )
 plt.xlabel("YEAR")
 plt.legend(loc="lower center", bbox_to_anchor=(0.5, -0.25), ncol=2)
-plt.ylabel("Opiods per Capita(MME/Capita")
+plt.ylabel("Opioids per Capita(MME/Capita")
 plt.figtext(
     1.02,
     0.5,
@@ -262,5 +262,5 @@ plt.show()
 # plt.axvline(x=2007, color="r", linestyle="--")
 # plt.title("Difference-in-Differences Plot Texas")
 # plt.xlabel("YEAR")
-# plt.ylabel("Opiods per Capita")
+# plt.ylabel("Opioids per Capita")
 # plt.show()
