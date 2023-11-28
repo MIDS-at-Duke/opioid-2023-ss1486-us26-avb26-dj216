@@ -7,7 +7,7 @@ import seaborn as sns
 # Morphine Milligram Equivalent (MME) Conversion (mg)
 
 """Load the data into a Pandas dataframe."""
-file_path = r"C:\Users\Simrun Sharma\Desktop\Practice Data Science\Practical_Data_Science\Opiod\diff_in_diff\county_mme_per_cap.csv"
+file_path = 
 shipments = pd.read_csv(file_path)
 
 
@@ -84,8 +84,7 @@ plt.figtext(
     bbox={"facecolor": "red", "alpha": 0.5, "pad": 10},
     ha="left",
 )
-plt.savefig(
-    r"C:\Users\Simrun Sharma\Desktop\Practice Data Science\Practical_Data_Science\Opiod\diff_in_diff\florida_diff.png",
+plt.savefig("/workspaces/opioid-2023-ss1486-us26-avb26-dj216/figures/florida_diff.png",
     bbox_inches="tight",
 )
 plt.show()
@@ -163,8 +162,7 @@ plt.figtext(
     bbox={"facecolor": "red", "alpha": 0.5, "pad": 10},
     ha="left",
 )
-plt.savefig(
-    r"C:\Users\Simrun Sharma\Desktop\Practice Data Science\Practical_Data_Science\Opiod\diff_in_diff\washington_diff.png",
+plt.savefig("/workspaces/opioid-2023-ss1486-us26-avb26-dj216/figures/washington_diff.png",
     bbox_inches="tight",
 )
 plt.show()
