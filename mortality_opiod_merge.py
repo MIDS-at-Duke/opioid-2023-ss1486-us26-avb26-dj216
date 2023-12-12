@@ -180,4 +180,7 @@ print(county_df)
 unique_years = df[df["BUYER_COUNTY"] == "ALEUTIANS EAST"]["YEAR"].unique()
 
 # Display the unique years
-print(unique_years)
+# print(unique_years)
+
+
+print(df2)
