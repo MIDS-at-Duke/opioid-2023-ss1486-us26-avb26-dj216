@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 DRUG ROUTES: (For Control state reasoning)
 
 1. TEXAS -https://www.justice.gov/archive/ndic/pubs5/5624/5624p.pdf (Arizona connection) 
@@ -17,3 +18,24 @@ https://www.justice.gov/archive/ndic/pubs5/5624/overview.htm#:~:text=DTOs%20and%
 Same route ad FL and opium almost entirely produced in South and East/west Asia
 
 Texas Control states : Louisiana, New Mex, Alabama
+=======
+DRUG ROUTES: (For Control state reasoning)
+
+1. TEXAS -https://www.justice.gov/archive/ndic/pubs5/5624/5624p.pdf (Arizona connection) 
+https://www.justice.gov/archive/ndic/pubs5/5624/overview.htm#:~:text=DTOs%20and%20criminal%20groups%20generally,other%20regions%20of%20the%20country.
+
+2. Alabama - https://druguse.alabama.gov/assets/files/2023AlabamaDrugThreatAssessment.pdf
+ mexico 
+
+3. MIssissipi - https://www.dps.ms.gov/sites/dps/files/2022%20MBN%20DRUG%20THREAT%20ASSESSMENT%20-%20Final.pdf (Shares with Florida - i-10) (2002)
+
+4. Louisiana - https://www.justice.gov/archive/ndic/pubs0/666/666p.pdf 
+
+5. dominican rep(Heroin opioid) and mexico 
+
+6. New Mexico - https://www.justice.gov/archive/ndic/pubs07/803/803p.pdf - Page 10 texas Arizona - https://www.justice.gov/archive/ndic/pubs6/6384/6384p.pdf
+
+Same route ad FL and opium almost entirely produced in South and East/west Asia
+
+Texas Control states : Louisiana, New Mex, Alabama
+>>>>>>> b8bebe5248978ab272fdd35ad9f60f8da761c881
