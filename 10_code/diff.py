@@ -7,7 +7,7 @@ import seaborn as sns
 # Morphine Milligram Equivalent (MME) Conversion (mg)
 
 """Load the data into a Pandas dataframe."""
-file_path = "county_mme_per_cap.csv"
+file_path = "/Users/danielajimenez/opioid-2023-ss1486-us26-avb26-dj216/20_intermediate_files/county_mme_per_cap.csv"
 shipments = pd.read_csv(file_path)
 
 ## Prepare dataset for graphs
@@ -87,7 +87,7 @@ plt.show()
 
 
 """ WASHINGTON"""
-year_wa_mask = (shipments["YEAR"] > 2008) & (shipments["YEAR"] < 2015)
+year_wa_mask = (shipments["YEAR"] > 2005) & (shipments["YEAR"] < 2015)
 shipments_WA = shipments.loc[year_wa_mask]
 
 if shipments_WA["BUYER_STATE"].isin(["ID", "OR", "MT"]).any():
