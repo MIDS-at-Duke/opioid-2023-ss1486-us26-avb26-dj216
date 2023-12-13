@@ -7,15 +7,18 @@ import seaborn as sns
 # Morphine Milligram Equivalent (MME) Conversion (mg)
 
 """Load the data into a Pandas dataframe."""
-file_path = "/workspaces/opioid-2023-ss1486-us26-avb26-dj216/county_mme_per_cap.csv"
+file_path = "county_mme_per_cap.csv"
 shipments = pd.read_csv(file_path)
 
-
+## Prepare dataset for graphs
 year_mask = (shipments["YEAR"] > 2006) & (shipments["YEAR"] < 2013)
 shipments_FL = shipments.loc[year_mask]
 shipments_FL = shipments[shipments["BUYER_STATE"].isin(["AL", "AZ", "MS", "FL"])]
 shipments_TX = shipments[shipments["BUYER_STATE"].isin(["AL", "AZ", "MS", "TX"])]
 shipments_WA = shipments[shipments["BUYER_STATE"].isin(["AL", "AZ", "MS", "WA"])]
+
+
+"""Florida """
 
 if shipments_FL["BUYER_STATE"].isin(["AL", "AZ", "MS"]).any():
     shipments_FL.loc[
@@ -23,7 +26,7 @@ if shipments_FL["BUYER_STATE"].isin(["AL", "AZ", "MS"]).any():
     ] = "control"
 
 final_df = shipments_FL.sort_values("YEAR")[
-    ["YEAR", "BUYER_STATE", "BUYER_COUNTY", "MME"]
+    ["YEAR", "BUYER_STATE", "BUYER_COUNTY", "MME", "MME_PER_CAP"]
 ]
 print(final_df)
 
@@ -58,11 +61,13 @@ palette = {
 final_df["policy_change"] = np.select(conditions, choices, default="other")
 print(final_df.head())
 
+
+# Florida Graph
 plt.figure(figsize=(10, 6))
 sns.lmplot(
     data=final_df,
     x="YEAR",
-    y="MME",
+    y="MME_PER_CAP",
     hue="policy_change",
     palette=palette,
     hue_order=choices,
@@ -70,21 +75,12 @@ sns.lmplot(
     legend=False,
 )
 plt.axvline(x=2010, color="r", linestyle="--")
-plt.title(
-    "Florida vs Control States Difference-in-Differences Analysis for Opioids per Capita(MME(mg)/Capita)(person))"
-)
+plt.title("")
 plt.xlabel("YEAR")
 plt.legend(loc="lower center", bbox_to_anchor=(0.5, -0.25), ncol=2)
-plt.ylabel("Opioids per Capita(MME/Capita")
-plt.figtext(
-    1.02,
-    0.5,
-    "Note: MME stands for Morphine Milligram Equivalent",
-    style="italic",
-    bbox={"facecolor": "red", "alpha": 0.5, "pad": 10},
-    ha="left",
-)
-plt.savefig("/workspaces/opioid-2023-ss1486-us26-avb26-dj216/figures/florida_diff.png",
+plt.ylabel("Morphine Miligram Equivalent per Capita")
+plt.savefig(
+    "figures/florida_diff_v2.png",
     bbox_inches="tight",
 )
 plt.show()
@@ -101,7 +97,7 @@ if shipments_WA["BUYER_STATE"].isin(["ID", "OR", "MT"]).any():
 
 
 final_wa_df = shipments_WA.sort_values("YEAR")[
-    ["YEAR", "BUYER_STATE", "BUYER_COUNTY", "MME"]
+    ["YEAR", "BUYER_STATE", "BUYER_COUNTY", "MME", "MME_PER_CAP"]
 ]
 # print(final_df)
 
@@ -139,7 +135,7 @@ plt.figure(figsize=(30, 20))
 sns.lmplot(
     data=final_wa_df,
     x="YEAR",
-    y="MME",
+    y="MME_PER_CAP",
     hue="policy_change",
     palette=palette,
     hue_order=choices,
@@ -148,21 +144,12 @@ sns.lmplot(
     ci=68,
 )
 plt.axvline(x=2012, color="r", linestyle="--")
-plt.title(
-    "Washington vs Control States Difference-in-Differences Analysis for Opioids per Capita(MME(mg)/Capita)(person))"
-)
+plt.title("")
 plt.xlabel("YEAR")
 plt.legend(loc="lower center", bbox_to_anchor=(0.5, -0.25), ncol=2)
-plt.ylabel("Opioids per Capita(MME/Capita")
-plt.figtext(
-    1.02,
-    0.5,
-    "Note: MME stands for Morphine Milligram Equivalent",
-    style="italic",
-    bbox={"facecolor": "red", "alpha": 0.5, "pad": 10},
-    ha="left",
-)
-plt.savefig("/workspaces/opioid-2023-ss1486-us26-avb26-dj216/figures/washington_diff.png",
+plt.ylabel("Morphine Miligram Equivalent per Capita")
+plt.savefig(
+    "figures/washington_diff_v2.png",
     bbox_inches="tight",
 )
 plt.show()
